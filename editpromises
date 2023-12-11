@@ -1,0 +1,77 @@
+// Promises
+function getButter() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Got Butter');
+            resolve();
+        }, 2000);
+    });
+}
+
+function getColdDrinks() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            console.log('Got Cold Drinks');
+            resolve();
+        }, 1000);
+    });
+}
+
+// Async/Await
+async function doTasks() {
+    try {
+        await getButter();
+        await getColdDrinks();
+        console.log('Tasks completed successfully.');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Async/Await with Promise.all
+async function doTasksConcurrently() {
+    try {
+        await Promise.all([getButter(), getColdDrinks()]);
+        console.log('Tasks completed successfully.');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Async/Await version of createPost
+async function createPostAsync() {
+    return new Promise((resolve, reject) => {
+        // Asynchronous operation
+        setTimeout(() => {
+            console.log('Post Created');
+            resolve();
+        }, 2000);
+    });
+}
+
+// Async/Await version of deletePost
+async function deletePostAsync() {
+    return new Promise((resolve, reject) => {
+        // Asynchronous operation
+        setTimeout(() => {
+            console.log('Post Deleted');
+            resolve();
+        }, 1000);
+    });
+}
+
+// Async/Await for post operations
+async function postOperations() {
+    try {
+        await createPostAsync();
+        await deletePostAsync();
+        console.log('Post operations completed.');
+    } catch (error) {
+        console.error('Error:', error);
+    }
+}
+
+// Combined execution
+doTasks();
+doTasksConcurrently();
+postOperations();
